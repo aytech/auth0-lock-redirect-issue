@@ -17,7 +17,7 @@ npm install -g @angular/cli
 ```
 ng serve --open
 ```
-Note: if you get an error on first compile, update some file in src/app folder to recompile, then you'll get success.
+> Note: if you get an error on first compile, update some file in src/app folder to recompile, then you'll get success.
 5. Go to index page at localhost:4200, login (username: noubadyels@gmail.com, password: 12345). Make sure login works as expected and profile link is visible,
 2. Logout.
 3. Append "/profile" to the URL. You should be redirected to the index page.
