@@ -1,27 +1,13 @@
-# Auth
+# auth0-lock-redirect-issue
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.0-rc.1.
+Reproducing issue with auth0-lock. There're 2 pages: index and profile. Profile is protected, only the logged in user can access it.
+The app works mostly as expected, however, there's login issue after unauthenticated user visits the profile page (add path in URL).
 
-## Development server
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Steps to reproduce:
+1. On index page, try to login. Make sure login works as expected and profile link is visible,
+2. Logout.
+3. Append "/profile" to the URL. You should be redirected to the index page.
+4. Try to login again. This should fail.
 
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive/pipe/service/class/module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-Before running the tests make sure you are serving the app via `ng serve`.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+## Progress
+So far I've figured that "authenticated" event is not fired, meaning that the authentication is not successful. The culprit must be in the redirect chain somewhere, as if I set redirect option to false in Auth0Lock configuration, everything works as expected
